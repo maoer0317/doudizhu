@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <string.h>
-#include <strings.h>
 #include "cards.h"
 
 int sort_cards(T_CARDS cards)
@@ -83,9 +82,11 @@ int get_card_index_in_order(const T_A_CARD card)
   T_A_CARD a_card;
   int index=0;
 
-  while((a_card=*(cards_sort+index++))){
+  while((a_card=*(cards_sort+index))){
 	if(a_card==card)
 	  return index;
+	else
+	  ++index;
   }
   return -1;
 }

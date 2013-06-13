@@ -1,48 +1,35 @@
 #include <stdio.h>
+#include <string.h>
+#include "cards.h"
 #include "cards_f.h"
 
 int main(int argc, char *argv[])
 {
   T_F_NODE *fks=NULL, *fks2=NULL,*fks3=NULL, 
 	*fks4=NULL,*fks_shunzi=NULL,*fks_all=NULL;
-  /*add_f(&fks, "76543");
-  add_f(&fks, "22");
-  add_f(&fks, "AAA");
-  //add_f(&fks, "888999000345");
-  add_f(&fks, "K");
-  add_f(&fks, "");*/
-  print_table(fks);
-  
-  add_f(&fks2,"33");
-  add_f(&fks2,"33");
-  add_f(&fks2,"444");
-  add_f(&fks2,"444");
-  add_f(&fks2,"33");
-  print_table(fks2);
-  //del_dup(&fks2);
-  print_table(fks2);
+  T_CARDS cards;
 
-  link_tables(&fks,fks2);
-  print_table(fks);
+  strcpy(cards,"g2777");
+  get_n_cards(&fks, cards,3);
+  print_table (fks, cards);
 
-  //multiple_tables(&fks3,fks,fks2);
-  //print_table(fks3);
-  
-  //free_table(&fks);
-  get_n_cards(&fks4, "g2777",3);
-  print_table (fks4);
+  strcpy(cards,"Gg2222AAKQKQKJ078456");
+  split_1234(&fks4, 3, cards);
+  print_table(fks4,cards);
 
-  split_1234(&fks4, 3, "Gg2222AAKQKQKJ078456");
-  print_table(fks4);
+  strcpy(cards,"Gg2AKQJ087654");
+  get_shunzi(&fks_shunzi,cards);
+  print_table(fks_shunzi, cards);
+  
+  strcpy(cards,"KKQQJJ0008776655");
+  get_adjacent_pairs(&fks_shunzi,cards);
+  print_table(fks_shunzi,cards);
 
-  
-  get_shunzi(&fks_shunzi, "Gg2AKQJ087654");
-  print_table(fks_shunzi);
-  get_adjacent_pairs(&fks_shunzi,"KKQQJJ0008776655");
-  print_table(fks_shunzi);
-  
-  get_all_fks(&fks_all,"Gg22AAAKKKQQJ08876543");
-  print_table(fks_all);
+  free_table(&fks_all);
+  //fks_all=NULL;
+  strcpy(cards,"KKQQJJJJ000877665543");
+  get_all_fks(&fks_all,cards);
+  print_table(fks_all,cards);
 
   free_table(&fks);
   free_table(&fks2);

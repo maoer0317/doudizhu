@@ -55,6 +55,17 @@ int is_pair(const char *s)
     return 0;  
 }
 
+void add_pairs(const sp_table *ss)
+{
+  sp_table *sp=ss;
+  
+  while(sp!=NULL){
+	if(is_pair(sp->str_one) && !in_table(sp->str_one, SP_STR))
+	   
+	sp=sp->next;
+  }
+}
+
 int is_triple(const char *s)
 {
   //char c1,c2,c3;
